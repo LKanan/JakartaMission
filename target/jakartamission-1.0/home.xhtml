@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Facelet Title</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </h:head>
+    <h:body>
+        <section class="h-screen flex justify-center items-center bg-gray-100">
+        <div class="py-8 px-32 flex flex-col justify-center items-center rounded-3xl bg-white-50 shadow-2xl">
+        <img src="indonesie.jpg" alt="Drapeau indonesie" class="h-32 w-48"/>
+        <p class="font-bold text-2xl pt-4">Bienvenu en Indonésie</p>
+        <h:form>
+            
+      <h:commandButton value="À propos >" class="mt-6 py-2 px-6 bg-blue-500 rounded-lg text-white font-semibold mr-4" action="#{navigationController.voirApropos()}"/>
+      
+      <h:commandButton value="Voir les lieux >" class="mt-6 py-2 px-6 bg-blue-500 rounded-lg text-white font-semibold" action="#{navigationController.voirLieux()}"/>
+        </h:form>
+        </div>
+            
+        </section>
+    </h:body>
+</html>

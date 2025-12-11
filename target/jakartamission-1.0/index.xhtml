@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Bienvenu en Indonesie</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h3>Entrez votre nom :</h3>
+            <h:inputText value="#{welcomeBean.nom}" required=""/>
+            <h:commandButton value="Envoyer" action="#{welcomeBean.afficher()}"/>
+        </h:form>
+        <h:outputText value="#{welcomeBean.message}"/>
+        
+        <hr/>
+        <h:form>
+            <h:commandButton value="Découvrir" action="home"/>
+        </h:form>
+        <hr/>
+        
+        <h:form>
+            <h2 style="text-align: center">Convertisseur de monnaie</h2>
+            <table>
+                <tr>
+                    <td>Convertisseur Dollars --> Roupie Indonesien</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>Monnaie dollars </h4>
+                        <h:inputText value="#{welcomeBean.dollar}" required=""/>
+                    </td>
+                    <td>
+                        <h4>.</h4>
+                        <h:commandButton value="Convertir" action="#{welcomeBean.convertirDollarsIndonesien()}"/>
+                    </td>
+                    <td>
+                        <h4>Roupie indonesien </h4>
+                        <h:outputText value="#{welcomeBean.indonesien}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Convertisseur Roupie Indonesien --> Dollars</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>Monnaie Roupie indonesien </h4>
+                        <h:inputText value="#{welcomeBean.indonesien}" required=""/>
+                    </td>
+                    <td>
+                        <h4>.</h4>
+                        <h:commandButton value="Convertir" action="#{welcomeBean.convertirIndonesienDollars()}"/>
+                    </td>
+                    <td>
+                        <h4>Roupie indonesien </h4>
+                        <h:outputText value="#{welcomeBean.dollar}"/>
+                    </td>
+                </tr>
+            </table>
+            
+        </h:form>
+    </h:body>
+</html>
