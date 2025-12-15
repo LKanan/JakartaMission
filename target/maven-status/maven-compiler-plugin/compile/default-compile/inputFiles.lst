@@ -1,4 +1,7 @@
 /home/lkanan/Programmation/JAKARTA/jakartamission/src/main/java/com/jakartaeeudbl/jakartamission/JakartaRestConfiguration.java
+/home/lkanan/Programmation/JAKARTA/jakartamission/src/main/java/com/jakartaeeudbl/jakartamission/entities/Lieu.java
 /home/lkanan/Programmation/JAKARTA/jakartamission/src/main/java/com/jakartaeeudbl/jakartamission/beans/WelcomeBean.java
 /home/lkanan/Programmation/JAKARTA/jakartamission/src/main/java/com/jakartaeeudbl/jakartamission/resources/JakartaEE10Resource.java
 /home/lkanan/Programmation/JAKARTA/jakartamission/src/main/java/com/jakartaeeudbl/jakartamission/beans/NavigationBean.java
+/home/lkanan/Programmation/JAKARTA/jakartamission/src/main/java/com/jakartaeeudbl/jakartamission/business/LieuEntrepriseBean.java
+/home/lkanan/Programmation/JAKARTA/jakartamission/src/main/java/com/jakartaeeudbl/jakartamission/beans/LieuBean.java
