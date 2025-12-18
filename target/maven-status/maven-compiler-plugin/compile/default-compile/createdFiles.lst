@@ -4,4 +4,7 @@ com/jakartaeeudbl/jakartamission/beans/WelcomeBean.class
 com/jakartaeeudbl/jakartamission/business/LieuEntrepriseBean.class
 com/jakartaeeudbl/jakartamission/beans/LieuBean.class
 com/jakartaeeudbl/jakartamission/beans/NavigationBean.class
+com/jakartaeeudbl/jakartamission/business/UtilisateurEntrepriseBean.class
+com/jakartaeeudbl/jakartamission/beans/UtilisateurBean.class
+com/jakartaeeudbl/jakartamission/entities/Utilisateur.class
 com/jakartaeeudbl/jakartamission/resources/JakartaEE10Resource.class
