@@ -3,61 +3,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html">
     <h:head>
-        <title>Bienvenu en Indonesie</title>
+        <title>Connexion</title>
+        <script src="https://cdn.tailwindcss.com"></script>
     </h:head>
     <h:body>
-        <h:form>
-            <h3>Entrez votre nom :</h3>
-            <h:inputText value="#{welcomeBean.nom}" required=""/>
-            <h:commandButton value="Envoyer" action="#{welcomeBean.afficher()}"/>
-        </h:form>
-        <h:outputText value="#{welcomeBean.message}"/>
-        
-        <hr/>
-        <h:form>
-            <h:commandButton value="Découvrir" action="home"/>
-        </h:form>
-        <hr/>
-        
-        <h:form>
-            <h2 style="text-align: center">Convertisseur de monnaie</h2>
-            <table>
-                <tr>
-                    <td>Convertisseur Dollars --> Roupie Indonesien</td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Monnaie dollars </h4>
-                        <h:inputText value="#{welcomeBean.dollar}" required=""/>
-                    </td>
-                    <td>
-                        <h4>.</h4>
-                        <h:commandButton value="Convertir" action="#{welcomeBean.convertirDollarsIndonesien()}"/>
-                    </td>
-                    <td>
-                        <h4>Roupie indonesien </h4>
-                        <h:outputText value="#{welcomeBean.indonesien}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Convertisseur Roupie Indonesien --> Dollars</td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Monnaie Roupie indonesien </h4>
-                        <h:inputText value="#{welcomeBean.indonesien}" required=""/>
-                    </td>
-                    <td>
-                        <h4>.</h4>
-                        <h:commandButton value="Convertir" action="#{welcomeBean.convertirIndonesienDollars()}"/>
-                    </td>
-                    <td>
-                        <h4>Roupie indonesien </h4>
-                        <h:outputText value="#{welcomeBean.dollar}"/>
-                    </td>
-                </tr>
-            </table>
-            
-        </h:form>
+        <section class="min-h-screen flex items-center justify-center bg-gray-100">
+            <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+                <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Connexion</h1>
+                <h:form>
+                    <div class="mb-4">
+                        <h:outputLabel for="email" value="Email :" styleClass="block text-sm font-medium text-gray-700 mb-1"/>
+                        <h:inputText id="email" value="#{welcomeBean.email}" required="true" styleClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                        <h:message for="email" style="color: red;"/>
+                    </div>
+
+                    <div class="mb-4">
+                        <h:outputLabel for="password" value="Mot de passe :" styleClass="block text-sm font-medium text-gray-700 mb-1"/>
+                        <h:inputSecret id="password" value="#{welcomeBean.password}" required="true" styleClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                        <h:message for="password" style="color: red;"/>
+                    </div>
+
+                    <h:messages globalOnly="true" style="color: red;"/>
+
+                    <div class="mt-6">
+                        <h:commandButton value="Se connecter" action="#{welcomeBean.sauthentifier}"
+                                         styleClass="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"/>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="ajoute_utilisateur.xhtml" class="text-blue-600 hover:underline">Créer un compte</a>
+                    </div>
+                </h:form>
+            </div>
+        </section>
     </h:body>
 </html>

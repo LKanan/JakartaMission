@@ -21,4 +21,15 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    
+     <!-- Configuration du filtre SessionControlFilter -->
+    <filter>
+             <filter-name>SessionControlFilter</filter-name>
+             <filter-class>com.jakartaeeudbl.jakartamission.sessionControlFilter</filter-class>
+     </filter>
+        <!-- Mapping des URL vers le filtre SessionControlFilter  -->
+       <filter-mapping>
+           <filter-name>SessionControlFilter</filter-name>
+           <url-pattern>/pages/*</url-pattern>
+       </filter-mapping>
 </web-app>

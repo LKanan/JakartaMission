@@ -4,8 +4,10 @@
  */
 package com.jakartaeeudbl.jakartamission.beans;
 
+import com.jakartaeeudbl.jakartamission.business.SessionManager;
 import com.jakartaeeudbl.jakartamission.business.UtilisateurEntrepriseBean;
 import com.jakartaeeudbl.jakartamission.entities.Utilisateur;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -43,6 +45,11 @@ public class UtilisateurBean {
     
     @Inject
     private UtilisateurEntrepriseBean utilisateurEntrepriseBean;
+    
+    @Inject
+    private SessionManager sessionManager;
+
+    private Utilisateur utilisateurConnecte;
      
     public String trouverUtilisateurParEmail(String email) {
         if(utilisateurEntrepriseBean.trouverUtilisateurParEmail(email) == null){
@@ -81,6 +88,37 @@ public class UtilisateurBean {
         description = "";
     }
     
+    public void chargerUtilisateurConnecte() {
+        String email = sessionManager.getValueFromSession("user");
+        if (email != null) {
+            utilisateurConnecte = utilisateurEntrepriseBean.trouverUtilisateurParEmail(email);
+            if (utilisateurConnecte != null) {
+                this.username = utilisateurConnecte.getUsername();
+                this.email = utilisateurConnecte.getEmail();
+                this.password = utilisateurConnecte.getPassword();
+                this.description = utilisateurConnecte.getDescription();
+            }
+        }
+    }
+
+    public String mettreAJourUtilisateur() {
+        if (utilisateurConnecte != null) {
+            utilisateurConnecte.setUsername(this.username);
+            utilisateurConnecte.setEmail(this.email);
+            utilisateurConnecte.setPassword(this.password);
+            utilisateurConnecte.setDescription(this.description);
+//            utilisateurEntrepriseBean.mettreAJourUtilisateur(utilisateurConnecte);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Profil mis à jour avec succès", null));
+            return null;
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur lors de la mise à jour", null));
+        return null;
+    }
+    
+    @PostConstruct
+    public void init() {
+        chargerUtilisateurConnecte();
+    }
 
 //    getters et setters
     public String getDescription() {

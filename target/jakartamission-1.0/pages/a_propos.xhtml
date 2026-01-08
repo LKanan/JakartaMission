@@ -7,11 +7,11 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </h:head>
     <h:body>
-        <section class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 h-screen">
+        <section class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 min-h-screen">
   <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-500),transparent)] opacity-10"></div>
   <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-gray-900 shadow-xl ring-1 shadow-indigo-500/5 ring-white/5 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
-  <div class="mx-auto max-w-2xl lg:max-w-4xl h-full flex flex-col justify-content items-center">
-      <div class="flex flex-col justify-content items-center">
+  <div class="mx-auto max-w-2xl lg:max-w-4xl flex flex-col items-center">
+      <div class="flex flex-col items-center">
     <img src="https://tailwindcss.com/plus-assets/img/logos/workcation-logo-indigo-400.svg" alt="" class="mx-auto h-12" />
     <figure class="mt-10">
       <blockquote class="text-center text-xl/8 font-semibold text-white sm:text-2xl/9">
@@ -28,6 +28,16 @@
         </div>
       </figcaption>
     </figure>
+      </div>
+      <div class="mt-12 w-full max-w-sm">
+        <h:form>
+          <div class="grid grid-cols-1 gap-3">
+            <h:commandButton value="Voir mon profil" action="#{navigationController.voirProfil()}"
+                             styleClass="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition-colors"/>
+            <h:commandButton value="Se déconnecter" action="#{navigationController.seDeconnecter()}"
+                             styleClass="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition-colors"/>
+          </div>
+        </h:form>
       </div>
   </div>
 </section>
