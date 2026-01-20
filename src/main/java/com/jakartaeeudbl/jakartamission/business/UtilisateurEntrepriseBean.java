@@ -59,4 +59,34 @@ public class UtilisateurEntrepriseBean {
             return null;
         }
     }
+
+    @Transactional
+    public void mettreAJourUtilisateur(Long id, String nouveauNom, String nouvelEmail, String nouveauMotDePasse, String nouvelleDescription) {
+        if (id == null) {
+            return;
+        }
+
+        Utilisateur utilisateurAModifier = em.find(Utilisateur.class, id);
+        if (utilisateurAModifier == null) {
+            return;
+        }
+
+        utilisateurAModifier.setUsername(nouveauNom);
+        utilisateurAModifier.setEmail(nouvelEmail);
+        utilisateurAModifier.setDescription(nouvelleDescription);
+
+        if (nouveauMotDePasse != null && !nouveauMotDePasse.isBlank()) {
+            // Si déjà au format bcrypt, on le conserve tel quel ; sinon on hash
+            boolean estHashBcrypt = nouveauMotDePasse.startsWith("$2a$")
+                    || nouveauMotDePasse.startsWith("$2b$")
+                    || nouveauMotDePasse.startsWith("$2y$");
+            if (estHashBcrypt) {
+                utilisateurAModifier.setPassword(nouveauMotDePasse);
+            } else {
+                utilisateurAModifier.setPassword(BCrypt.hashpw(nouveauMotDePasse, BCrypt.gensalt()));
+            }
+        }
+
+        // L'entité 'utilisateurAModifier' est managée, elle sera synchronisée automatiquement
+    }
 }

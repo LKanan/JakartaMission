@@ -42,6 +42,8 @@ public class UtilisateurBean {
      @NotBlank(message = "Veuillez confirmer votre mot de passe")
     private String confirmPassword;
     private String description;
+    // Champ utilisé uniquement pour la modification du profil (mot de passe optionnel)
+    private String nouveauMotDePasse;
     
     @Inject
     private UtilisateurEntrepriseBean utilisateurEntrepriseBean;
@@ -95,23 +97,37 @@ public class UtilisateurBean {
             if (utilisateurConnecte != null) {
                 this.username = utilisateurConnecte.getUsername();
                 this.email = utilisateurConnecte.getEmail();
-                this.password = utilisateurConnecte.getPassword();
                 this.description = utilisateurConnecte.getDescription();
             }
         }
     }
 
     public String mettreAJourUtilisateur() {
-        if (utilisateurConnecte != null) {
-            utilisateurConnecte.setUsername(this.username);
-            utilisateurConnecte.setEmail(this.email);
-            utilisateurConnecte.setPassword(this.password);
-            utilisateurConnecte.setDescription(this.description);
-//            utilisateurEntrepriseBean.mettreAJourUtilisateur(utilisateurConnecte);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Profil mis à jour avec succès", null));
+        String emailSession = sessionManager.getValueFromSession("user");
+
+        if (emailSession == null || emailSession.isBlank()) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Session expirée. Veuillez vous reconnecter.", null));
             return null;
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur lors de la mise à jour", null));
+
+        Utilisateur utilisateur = utilisateurEntrepriseBean.trouverUtilisateurParEmail(emailSession);
+        if (utilisateur == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Utilisateur introuvable.", null));
+            return null;
+        }
+
+        utilisateurEntrepriseBean.mettreAJourUtilisateur(
+            utilisateur.getId(),
+            this.username,
+            this.email,
+            this.nouveauMotDePasse,
+            this.description
+        );
+
+        FacesContext.getCurrentInstance().addMessage(null,
+            new FacesMessage(FacesMessage.SEVERITY_INFO, "Profil mis à jour avec succès", null));
         return null;
     }
     
@@ -160,6 +176,14 @@ public class UtilisateurBean {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public String getNouveauMotDePasse() {
+        return nouveauMotDePasse;
+    }
+
+    public void setNouveauMotDePasse(String nouveauMotDePasse) {
+        this.nouveauMotDePasse = nouveauMotDePasse;
     }
     
     
