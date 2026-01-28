@@ -3,23 +3,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html">
     <h:head>
-        <title>Facelet Title</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+      <title>Jakarta Mission - Accueil</title>
+      <script src="https://cdn.tailwindcss.com"></script>
     </h:head>
-    <h:body>
-        <section class="h-screen flex justify-center items-center bg-gray-100">
-        <div class="py-8 px-32 flex flex-col justify-center items-center rounded-3xl bg-white-50 shadow-2xl">
-        <img src="../indonesie.jpg" alt="Drapeau indonesie" class="h-32 w-48"/>
-        <p class="font-bold text-2xl pt-4">Bienvenu en Indonésie</p>
-        <a href="ajoute_utilisateur.xhtml">Créer un compte</a>
-        <h:form>
-            
-      <h:commandButton value="À propos >" class="mt-6 py-2 px-6 bg-blue-500 rounded-lg text-white font-semibold mr-4" action="#{navigationController.voirApropos()}"/>
-      
-      <h:commandButton value="Voir les lieux >" class="mt-6 py-2 px-6 bg-blue-500 rounded-lg text-white font-semibold" action="#{navigationController.voirLieux()}"/>
-        </h:form>
+    <h:body class="bg-gradient-to-br from-indigo-900 via-slate-900 to-emerald-700 min-h-screen flex items-center justify-center">
+      <section class="max-w-5xl w-full px-4">
+        <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+          <!-- Image / visuel -->
+          <div class="lg:w-1/2 bg-gradient-to-br from-amber-400 via-rose-500 to-indigo-600 p-8 flex flex-col justify-between text-white">
+            <div>
+              <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Bienvenue en Indonésie</h1>
+              <p class="text-sm sm:text-base text-amber-50/90 mb-4">
+                Explorez les îles, enregistrez vos lieux préférés et suivez vos visites avec Jakarta Mission.
+              </p>
+            </div>
+            <img src="../indonesie.jpg" alt="Drapeau indonésie" class="mt-4 rounded-2xl shadow-xl border border-white/30"/>
+          </div>
+
+          <!-- Actions -->
+          <div class="lg:w-1/2 p-8 bg-slate-900/80 text-slate-50 flex flex-col justify-between">
+            <div>
+              <h2 class="text-2xl font-semibold mb-2">Commencer votre aventure</h2>
+              <p class="text-sm text-slate-300 mb-6">
+                Créez un compte, découvrez les lieux à visiter et planifiez vos explorations.
+              </p>
+              <a href="ajoute_utilisateur.xhtml" class="inline-flex items-center text-sm font-semibold text-amber-300 hover:text-amber-200 underline underline-offset-4">
+                Créer un compte
+              </a>
+            </div>
+
+            <h:form>
+              <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <h:commandButton value="À propos" action="#{navigationController.voirApropos()}"
+                         styleClass="py-2.5 px-4 rounded-xl bg-slate-800 text-slate-50 text-sm font-semibold shadow hover:bg-slate-700"/>
+
+                <h:commandButton value="Voir les lieux" action="#{navigationController.voirLieux()}"
+                         styleClass="py-2.5 px-4 rounded-xl bg-indigo-600 text-white text-sm font-semibold shadow hover:bg-indigo-500"/>
+
+                <h:commandButton value="Faire une visite" action="#{navigationController.voirGuide()}"
+                         styleClass="py-2.5 px-4 rounded-xl bg-emerald-500 text-white text-sm font-semibold shadow hover:bg-emerald-400"/>
+              </div>
+            </h:form>
+          </div>
         </div>
-            
-        </section>
+      </section>
     </h:body>
 </html>

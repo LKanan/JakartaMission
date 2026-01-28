@@ -34,6 +34,13 @@ public class NavigationBean {
            e.printStackTrace();
         }
     }
+    public void voirGuide(){
+        try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect("guide.xhtml");
+        }catch(IOException e){
+           e.printStackTrace();
+        }
+    }
     public void voirProfil(){
         try{
             FacesContext.getCurrentInstance().getExternalContext().redirect("profil.xhtml");

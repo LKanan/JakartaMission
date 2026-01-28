@@ -149,15 +149,18 @@
                             </f:facet>
                             <h:form>
                                 <div>
-                                    <div class="flex">
+                                    <div class="flex gap-2">
                                         <button type="button"
-        class="btn-modifier px-3 py-1 rounded-xl text-white bg-indigo-500 hover:bg-indigo-700 mr-3"
+        class="btn-modifier px-3 py-1 rounded-xl text-white bg-indigo-500 hover:bg-indigo-700"
         data-popup-id="popup-#{lieu.id}">
     Modifier
 </button>
 
                                         <h:commandButton action="#{lieuBean.supprimerLieu(lieu.id)}" value="Supprimer"
                                             class="px-3 py-1 rounded-xl text-white hover:bg-red-700 bg-red-500" />
+
+                                        <h:commandButton action="#{visiteBean.enregistrerVisite(lieu.id)}" value="Marquer comme visité"
+                                            class="px-3 py-1 rounded-xl text-white bg-emerald-500 hover:bg-emerald-700" />
                                     </div>
                                     <div id="popup-#{lieu.id}"
      class="popup fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
